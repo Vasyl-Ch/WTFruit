@@ -1,5 +1,4 @@
 import numpy as np
-from PIL import Image
 
 from app.model import model, classes
 
@@ -19,6 +18,13 @@ def predict(image):
     predictions = model.predict(image)
     predicted_class = np.argmax(predictions)
     confidence = np.max(predictions)
-    label = classes[str(predicted_class)]
+    label = None
+    for fruit_name, index in classes.items():
+        if index == predicted_class:
+            label = fruit_name
+            break
+    
+    if label is None:
+        label = "Unknown"
 
     return label, round(float(confidence) * 100, 2)
