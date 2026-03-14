@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    container_name: wtfruit_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./app:/app/app
+      - ./templates:/app/templates
+      - ./static:/app/static
+    environment:
+      - TF_ENABLE_ONEDNN_OPTS=0
+    restart: always

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="result">
+        <div class="content-box">
+            <h1>This is a {{ prediction }}</h1>
+            <h2>Confidence: {{ confidence }}</h2>
+
+            <img src="{{ image_path }}" class="uploaded" alt="Uploaded fruit">
+
+            <br><br>
+            <a href="/" style="color: white; text-decoration: underline;">Back to search</a>
+        </div>
+    </div>
+</body>
+</html>
