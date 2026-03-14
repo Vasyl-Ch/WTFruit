@@ -1,16 +1,21 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-from fastapi import UploadFile, File
+from fastapi.staticfiles import StaticFiles
+
 import shutil
 import os
+from PIL import Image
+
+from app.predictor import predict
 
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
 
-UPLOAD_FOLDER = "uploads"
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
+UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
@@ -21,11 +26,23 @@ async def home(request: Request):
 
 
 @app.post("/predict")
-async def predict_image(file: UploadFile = File(...)):
+async def predict_image(request: Request, file: UploadFile = File(...)):
 
     filepath = f"{UPLOAD_FOLDER}/{file.filename}"
 
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    return {"file_saved": filepath}
+    image = Image.open(filepath)
+
+    prediction, confidence = predict(image)
+
+    return templates.TemplateResponse(
+        "result.html",
+        {
+            "request": request,
+            "prediction": prediction,
+            "confidence": confidence,
+            "image_path": filepath,
+        },
+    )
