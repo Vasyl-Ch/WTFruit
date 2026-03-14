@@ -19,7 +19,9 @@ A web application that classifies fruits and vegetables using TensorFlow deep le
 ## Supported Classes
 
 The model can classify 36 different fruits and vegetables including:
-apple, banana, beetroot, bell pepper, cabbage, capsicum, carrot, cauliflower, chilli pepper, corn, cucumber, eggplant, garlic, ginger, grapes, jalepeno, kiwi, lemon, lettuce, mango, onion, orange, paprika, pear, peas, pineapple, pomegranate, potato, raddish, soy beans, spinach, sweetcorn, sweetpotato, tomato, turnip, watermelon
+apple, banana, beetroot, bell pepper, cabbage, capsicum, carrot, cauliflower, chilli pepper, corn, cucumber, eggplant,
+garlic, ginger, grapes, jalepeno, kiwi, lemon, lettuce, mango, onion, orange, paprika, pear, peas, pineapple,
+pomegranate, potato, raddish, soy beans, spinach, sweetcorn, sweetpotato, tomato, turnip, watermelon
 
 ## Quick Start
 
@@ -27,17 +29,21 @@ apple, banana, beetroot, bell pepper, cabbage, capsicum, carrot, cauliflower, ch
 
 1. Clone the repository
 2. Run with Docker Compose:
+
 ```bash
 docker-compose up --build
 ```
+
 3. Open http://localhost:8000 in your browser
 
 4. To stop the application:
+
 ```bash
 docker-compose down
 ```
 
 5. To rebuild and restart:
+
 ```bash
 docker-compose up --build --force-recreate
 ```
@@ -45,17 +51,20 @@ docker-compose up --build --force-recreate
 ### Option 2: Local Development
 
 1. Create virtual environment:
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
 2. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
 3. Run the application:
+
 ```bash
 uvicorn app.main:app --reload
 ```
@@ -98,3 +107,13 @@ WTFruit/
 ## Contributing
 
 Feel free to submit issues and pull requests to improve the project.
+
+## Dataset & Model Training
+
+- **Dataset
+  **: [Fruit and Vegetable Image Recognition](https://www.kaggle.com/datasets/kritikseth/fruit-and-vegetable-image-recognition/data)
+  from Kaggle
+- **Model Training
+  **: [Google Colab Notebook](https://colab.research.google.com/drive/117si0GtqBJfrGQgpBnVfDTXeHA1hPvOy?usp=sharing)
+  where the model was trained
+![img.png](static/images/img.png)![img_1.png](static/images/img_1.png)
